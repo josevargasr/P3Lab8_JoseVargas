@@ -24,7 +24,7 @@ Alfil::~Alfil() {
 
 bool Alfil::validarMovimiento(int xpos, int ypos, int xmove , int ymove, char** tablero){
     if(Pieza::validarMovimiento(xpos, ypos, xmove, ymove, tablero)){
-        
+        return true;
     }else{
         return false;
     }

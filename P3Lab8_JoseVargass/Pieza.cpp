@@ -23,7 +23,7 @@ Pieza::~Pieza() {
 }
 
  bool Pieza::validarMovimiento(int xpos, int ypos, int xmove , int ymove, char** tablero){
-    if(xpos > 7 || xpos < 0 || ypos > 7 || ypos < 0 || xmove > 7 || xmove < 0 || ymove > 7 || ymove < 0){
+    if(xpos > 7 || xpos < 0 || ypos > 7 || ypos < 0 || xmove > 7 || xmove < 0 || ymove > 7 || ymove < 0 || tablero[ypos][xpos] == '+'){
         return false;
     }else
         return true;

@@ -14,6 +14,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream> //file stream
+using std::ifstream;
 
 #include "Pieza.h"
 #include "Reina.h"
@@ -71,7 +73,7 @@ int main(int argc, char** argv) {
                 switch (pieza) {
                     case 1:
                     {
-                        
+
                         tipo_pieza = new Reina();
                         tablero[0][3] = 'q';
                         tablero[7][3] = 'Q';
@@ -80,7 +82,7 @@ int main(int argc, char** argv) {
                     }
                     case 2:
                     {
-                        
+
                         tipo_pieza = new Torre();
                         tablero[0][7] = 't';
                         tablero[7][0] = 'T';
@@ -89,7 +91,7 @@ int main(int argc, char** argv) {
                     }
                     case 3:
                     {
-                        
+
                         tipo_pieza = new Alfil();
                         tablero[0][5] = 'a';
                         tablero[7][2] = 'A';
@@ -99,7 +101,7 @@ int main(int argc, char** argv) {
                     case 4:
                     {
                         tipo_pieza = new Peon();
-                        
+
                         tablero[1][4] = 'p';
                         tablero[6][4] = 'P';
                         partida = new Partida(nombre, "Peon", movimientos);
@@ -108,7 +110,7 @@ int main(int argc, char** argv) {
                     case 5:
                     {
                         tipo_pieza = new Caballo();
-                        
+
                         tablero[0][6] = 'c';
                         tablero[7][1] = 'C';
                         partida = new Partida(nombre, "Caballo", movimientos);
@@ -181,8 +183,8 @@ int main(int argc, char** argv) {
                         xmove = 7;
 
                     }
-                    partida->agregarMovimiento(pos);
                     if (tipo_pieza->validarMovimiento(xpos, ypos, xmove, ymove, tablero)) {
+                        partida->agregarMovimiento(pos);
                         char piece = tablero[ypos][xpos];
                         tablero[ypos][xpos] = '+';
                         tablero[ymove][xmove] = piece;
@@ -251,8 +253,8 @@ int main(int argc, char** argv) {
                         xmove = 7;
 
                     }
-                    partida->agregarMovimiento(pos);
                     if (tipo_pieza->validarMovimiento(xpos, ypos, xmove, ymove, tablero)) {
+                        partida->agregarMovimiento(pos);
                         char piece = tablero[ypos][xpos];
                         tablero[ypos][xpos] = '+';
                         tablero[ymove][xmove] = piece;
@@ -273,11 +275,21 @@ int main(int argc, char** argv) {
                 }
 
                 liberarMatriz(tablero, 8);
+                partida->guardarPartida();
                 cout << endl;
                 break;
             }
             case 2:
             {
+                cout << endl;
+                ifstream file("bitacoraPartidas.txt");
+                string linea;
+                if (file.is_open()) {
+                    while (getline(file, linea)) {
+                        cout << linea << endl;
+                    }
+                    file.close(); //cerrar archivo
+                }
                 cout << endl;
                 break;
             }

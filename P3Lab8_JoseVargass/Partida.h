@@ -16,6 +16,9 @@
 #include <string>
 #include <vector>
 #include "Pieza.h"
+#include <fstream>
+using std::ifstream;
+using std::ofstream;
 
 using std::string;
 using std::vector;
